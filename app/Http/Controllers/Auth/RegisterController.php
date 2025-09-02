@@ -49,9 +49,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'      => ['required', 'string', 'max:255'],
+            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password'  => ['required', 'string', 'min:8', 'confirmed'],
+            'address'   => ['string', 'max:255'],
+            'birth_day' => ['required', 'date', 'before_or_equal:today'],
         ]);
     }
 
@@ -63,10 +65,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // ユーザー登録では住所の登録は不要なので空文字として扱って登録
+        if(empty($data->address)){
+            array_push($data, 'address');
+            $data['address'] = '';
+        }
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']),
+            'address'   => $data['address'],
+            'birth_day' => $data['birth_day'],
         ]);
     }
 }
