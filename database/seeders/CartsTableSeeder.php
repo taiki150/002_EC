@@ -21,8 +21,8 @@ class CartsTableSeeder extends Seeder
             ],
             [
                 'id'          => 2,
-                'user_id'     => 1,
-                'status_id'   => 2,
+                'user_id'     => 2,
+                'status_id'   => 1,
                 'total_cache' => 3000,
                 'created_at'  => Carbon::now(),
                 'updated_at'  => Carbon::now(),

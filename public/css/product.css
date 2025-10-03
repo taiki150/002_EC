@@ -1,0 +1,97 @@
+body {
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+  padding: 30px 100px;
+  box-sizing: border-box;
+}
+
+.contents {
+  width: 100%;
+}
+
+.contents ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.contents ul li {
+  width: calc((100% / 4) - 40px);
+  box-sizing: border-box;
+}
+
+.product_box {
+  margin-bottom: 20px;
+}
+
+.product_box a:hover img{
+  opacity: 0.7;
+}
+
+.contents ul li img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: 0.2s;
+}
+
+button {
+  display: block;
+  border: none;
+  background-color: #ECBF2F;
+  color: #333;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #614f13;
+  color: #fff;
+}
+
+
+/* モーダルのスタイル */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal_content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 50%;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal_image {
+  width: 50%;
+
+}
+.modal_image img {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}

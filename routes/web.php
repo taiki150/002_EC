@@ -1,44 +1,62 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\LineController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
+// 公開ページ
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Google Login
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+// LINE Login
+Route::get('auth/line', [LineController::class, 'redirectToLine'])->name('line.login');
+Route::get('auth/line/callback', [LineController::class, 'handleLineCallback']);
+
+// 決済成功後に戻る
+Route::get('/checkout/success', [App\Http\Controllers\OrderController::class, 'success'])->name('checkout.success');
+
+// 決済キャンセル時
+Route::get('/checkout/cancel', [App\Http\Controllers\CartController::class, 'index'])->name('checkout.cancel');
+
+// Webhook (Stripe → サーバーへ通知)
+Route::post('/stripe/webhook', [App\Http\Controllers\StripeWebhookController::class, 'handleWebhook'])->name('stripe.webhook');
+
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// 認証が必要なルート
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-// ★ユーザー画面★
-// 画面遷移(GET)
+    // ユーザー画面
+    Route::get('/user/{id}', [UserController::class, 'userShow'])->name('user.show');
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('order', [OrderController::class, 'store'])->name('order.store');
+    Route::post('user_update', [UserController::class, 'user_update'])->name('user.update');
 
-// ユーザー情報確認画面
-Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'userShow'])->name('user.show');
-
-// Top画面(商品一覧)
-Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
-
-// カート内画面
-Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
-
-// 購入画面 id=cartItemのid
-Route::get('/orders/{id}', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
-
-// 機能(POST)
-
-
-// ★管理画面★
-// 画面遷移(GET)
-// 機能(POST)
+    // カート操作
+    Route::post('/cartItem/create', [CartItemController::class, 'createItem_create'])->name('cart.item.create');
+    Route::post('/cartItem/create/add', [CartItemController::class, 'createItem_create_add'])->name('cart.item.create.add');
+    Route::post('/cartItem/create/remove', [CartItemController::class, 'createItem_create_remove'])->name('cart.item.create.remove');
+    Route::post('/cartItem/delete', [CartItemController::class, 'createItem_delete'])->name('cart.item.delete');
+});

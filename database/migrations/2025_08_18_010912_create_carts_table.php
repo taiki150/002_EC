@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users', 'id');
+            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete()->unique();
             $table->foreignId('status_id')->constrained('statuses', 'id');
             $table->decimal('total_cache', 10);
             $table->timestamps();

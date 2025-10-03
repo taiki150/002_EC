@@ -65,6 +65,35 @@
                             </div>
                         </div>
                     </form>
+                    </form>
+
+                    <hr>
+
+                    <div class="row mb-0">
+                        <div class="col-md-8 offset-md-4 d-flex flex-column gap-2">
+
+                            {{-- Googleログイン --}}
+                            <a href="{{ route('google.login') }}" 
+                            class="btn btn-light border d-flex align-items-center justify-content-center" 
+                            style="width: 250px;">
+                                <img src="https://developers.google.com/identity/images/g-logo.png"
+                                    alt="Google" style="width:20px; height:20px; margin-right:8px;">
+
+                                Googleでログイン
+                            </a>
+
+                            {{-- LINEログイン --}}
+                            <a href="{{ route('line.login') }}" 
+                            class="btn btn-success d-flex align-items-center justify-content-center" 
+                            style="width: 250px; color:white;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
+                                    alt="LINE" style="width:20px; height:20px; margin-right:8px;">
+                                LINEでログイン
+                            </a>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
