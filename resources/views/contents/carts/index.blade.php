@@ -1,3 +1,12 @@
+@php
+    $total = 0;
+    $flg_order_btn_show = true;
+
+    if ($cartItems->isEmpty()) {
+        $flg_order_btn_show = false;
+    }
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +34,6 @@
                         $total = $total + $item->unit_price;
                         if($total <= 0){
                             $total = 0;
-                            $flg_order_btn_show = false;
                         }
                     @endphp
                     <div class="item_box">
@@ -47,7 +55,7 @@
                                     </li>
                                     <li class="item_quantity">
                                         @if($item->item_quantity === 1)
-                                            <a href="javascript::void(0)" id="remove_btn_gray_{{$item->product->id}}" style="background-color: #bbb; color: #fff; cursor: default;">－</a>
+                                            <a class="remove_to_cart no_active" id="remove_btn_{{ $item->product->id }}" href="javascript::void(0)"  data-id="{{ $item->product->id }}">－</a>
                                         @else
                                             <a class="remove_to_cart" id="remove_btn_{{ $item->product->id }}" href="javascript::void(0)"  data-id="{{ $item->product->id }}">－</a>
                                         @endif
@@ -92,7 +100,7 @@
                     {{-- ここでカートIDをhiddenで送る --}}
                     <input type="hidden" name="cart_id" value="{{ $cart->id }}">
                     <input type="hidden" name="total" value="{{ $total }}">
-                    <button type="submit">購入画面へ</button>
+                    <button type="submit" class="order_btn">購入画面へ進む</button>
                 </form>
             @endif
         </div>

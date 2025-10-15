@@ -82,6 +82,13 @@ h2{
   border-radius: 100%;
 }
 
+.under_box .no_active {
+  background-color: #bbb;
+  color: #fff;
+  cursor: default;
+  pointer-events: none;
+}
+
 .under_box a:hover {
   background-color: #ECBF2F;
 }

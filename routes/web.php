@@ -46,13 +46,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // ユーザー画面
+    Route::get('user/index', [UserController::class, 'index'])->name('user.index');
+    Route::get('user/update/show', [UserController::class, 'update_show'])->name('user.update.show');
     Route::get('/user/{id}', [UserController::class, 'userShow'])->name('user.show');
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart.index');
     Route::post('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('order', [OrderController::class, 'store'])->name('order.store');
-    Route::post('user_update', [UserController::class, 'user_update'])->name('user.update');
+    Route::post('user/update', [UserController::class, 'user_update'])->name('user.update');
 
     // カート操作
     Route::post('/cartItem/create', [CartItemController::class, 'createItem_create'])->name('cart.item.create');

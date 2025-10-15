@@ -47,11 +47,28 @@
               </div>
               <div class="modal_text">
                 <h2>{{ $product->name }}</h2>
-                <p>価格: {{ number_format($product->price * 1.1) }}円(税込)</p>
-                <p>{{ $product->comment }}</p>
+                <p class="modal_proce">価格: {{ number_format($product->price * 1.1) }}円(税込)</p>
+                <p class="modal_comment">{{ $product->comment }}</p>
+                {{--  
+                @if($flg_cartItem)
+                  <form action="{{ route('cart.item.create.add') }}" method="post">
+                @else
+                  <form action="{{ route('cart.item.create') }}" method="post">
+                @endif
+                  @csrf
+                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                @if($flg_cartItem)
+                  <button data-id="{{ $product->id }}" class="add_to_cart"  type="button">カートに追加</button>
+                @else
+                  <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
+                  <button data-id="{{ $product->id }}" class="create_to_cart" type="button">カートに追加</button>
+                @endif
+                </form>
+                --}}
               </div>
             </div>
           </div>
+          <!-- ここまでモーダル -->
 
           @foreach($cartItems as $cartItem)
             @php 

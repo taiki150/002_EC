@@ -1,0 +1,83 @@
+body {
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+  padding: 30px 100px;
+  box-sizing: border-box;
+}
+
+.contents {
+  width: 100%;
+}
+
+.contents h2 {
+  width: 100%;
+  padding: 10px;
+  border-left: 10px solid rgb(243, 83, 83);
+  box-sizing: border-box;
+  background-color: #eee;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.user_update {
+  width: 90%;
+  margin: auto;
+  /* border: 1px solid #ccc;
+  padding: 30px; */
+  box-sizing: border-box;
+}
+
+.user_update dl {
+  width: 100%;
+}
+
+.user_update_box {
+  border-bottom:1px solid #666 ;
+  margin-bottom: 30px;
+}
+
+.user_update_box:nth-child(1){
+  width: 200px;
+}
+
+.user_update_box dt {
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.user_update_box dd {
+  height: 50px;
+}
+
+.user_update_box dd input {
+  border: none;
+  padding: 0;
+  display: block;
+  background-color: #eee;
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.user_update_box dd input:focus {
+  outline: none;
+}
+
+.user_update button {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid #333;
+  border-radius: none;
+  background-color: #ECBF2F;
+}
+
+.user_update button:hover {
+  background-color: #614f13;
+  color: #fff;
+}

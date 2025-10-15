@@ -83,6 +83,7 @@ class OrderController extends Controller
     public function success(Request $request)
     {
         $user = auth()->user();
+        // dd($request);
         $cart = Cart::where('user_id', $user->id)->first();
         $cartItems = $cart ? $cart->cartItems()->get() : collect();
 

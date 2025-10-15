@@ -7,24 +7,27 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       const targetId = btn.getAttribute("data-id");
-      document.getElementById("modal-" + targetId).style.display = "block";
+      const modal = document.getElementById("modal-" + targetId);
+      modal.classList.add("show");
     });
   });
 
   // 閉じる（×ボタン）
   closeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      btn.closest(".modal").style.display = "none";
+      btn.closest(".modal").classList.remove("show");
     });
   });
 
   // 背景クリックでも閉じる
   window.addEventListener("click", (e) => {
     if (e.target.classList.contains("modal")) {
-      e.target.style.display = "none";
+      e.target.classList.remove("show");
     }
   });
 });
+
+
 
 /**********************************************************
 *

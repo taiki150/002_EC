@@ -80,6 +80,25 @@ header {
   color: #444;
 }
 
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout_btn {
+  display: block;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  background-color: none;
+}
+
+.logout_btn:hover {
+  color: #ECBF2F;
+  text-decoration: underline;
+}
+
 #cartItems_count {
   transition: transform 0.3s ease, color 0.3s ease;
 }
