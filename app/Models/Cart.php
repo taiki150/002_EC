@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Cart extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'status_id',
+        'total_cache',
+    ];
+
+    // 1つのカートに複数のアイテム
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
+    // カートはユーザーに属する
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // カートの状態
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+}

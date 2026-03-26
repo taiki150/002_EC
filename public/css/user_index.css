@@ -1,0 +1,101 @@
+body {
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+  padding: 30px 100px;
+  box-sizing: border-box;
+}
+
+.contents {
+  width: 100%;
+}
+
+.regist_info_box {
+  margin-bottom: 30px;
+}
+
+.regist_info_box h3 {
+  width: 100%;
+  padding: 10px;
+  border-left: 10px solid #f35353;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+.regist_info_text_box {
+  width: 90%;
+  margin: auto;
+  margin-top: 30px;
+  display: flex;
+}
+
+.regist_info_text_box.no_flex {
+  display: block;
+}
+
+.regist_info_text_box dl {
+  width: 100%;
+}
+
+.user_regist_box {
+  width: 100%;
+  display: flex;
+  border: 1px solid #666;
+  border-top: none;
+}
+
+.user_regist_box:first-child {
+  border-top: 1px solid #666;
+}
+
+.user_regist_box dt {
+  width: 20%;
+  background-color: #eee;
+  border-right: 1px solid #666;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.user_regist_box dd {
+  width: 80%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.user_update {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user_update a {
+  font-size: 14px;
+  color: #5ab3fc;
+  text-decoration: underline;
+  transition: 0.3s;
+}
+
+.user_update a:hover {
+  color: #f65d5d;
+}
+
+.regist_info_text_box a {
+  display: inline-block;
+  padding: 10px;
+  color: #5ab3fc;
+}
+
+.regist_info_text_box a:hover {
+  background-color: #eee;
+}
+
+.regist_info_text_box p {
+  display: flex;
+  margin-left: 30px;
+  align-items: center;
+  font-size: 12px;
+}
